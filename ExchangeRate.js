@@ -1,24 +1,36 @@
  
  import React from 'react';
- import ReactDOM from 'react-dom';
+ import './ExchangeRate.css'
+ import Header from './Header.js'
+
  
 
  class ExchangeRate extends React.Component{
  
- gettingWeather = async () => {
-   const api_url = await
-   fetch(`https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`);  
-   const data = await api_url.json();
-   alert(data[0].buy);
 
+ constructor() {
+ 	super();
+ 	this.state = {
+ 		rates: [],
+ 	}
  }
+ 
+
+ async componentDidMount() { 
+   const api_url = await
+   fetch(`https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`)
+   const json = await api_url.json();
+   this.setState({ rates: json });
+
+  }
+ 
  
  render() {
   return(
-   <div className="weather">
-  	  <button onClick={this.gettingWeather} type="button" className="btn btn-primary">get</button>
-
-   </div>
+   <React.Fragment>
+     <Header></Header>
+     
+   </React.Fragment>
   );
  }
 

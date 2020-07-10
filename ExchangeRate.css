@@ -1,0 +1,9 @@
+.rates-header {
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+}
+.rates-header h2 {
+  text-align: center;
+  color: black;
+}
