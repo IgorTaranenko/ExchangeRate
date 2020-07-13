@@ -2,8 +2,11 @@ import React from 'react';
 import './ExchangeRate.css'
 import { Container, Col, Row } from 'react-bootstrap'
 
-export default function Header (props) {
-	return(
+ function Header (props) {
+
+ const { rates } = props;
+ console.log(rates[0]);
+ return(
 
 		<header className="rates-header">
 			<Container>
@@ -12,7 +15,7 @@ export default function Header (props) {
 				  </Col>
 				  <Col md={6}>			  	
 								  <h2>Курсы валют на сегодня:</h2>
-								  <h2>...</h2>
+								  
 				  </Col>
 				  <Col md={3}>			  	
 				  </Col>
@@ -22,3 +25,4 @@ export default function Header (props) {
 		)
 }	
 
+export default Header

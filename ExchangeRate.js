@@ -15,20 +15,31 @@
  	}
  }
  
+ ratesToState = (json) => {
+   const stateRates = json.map(json => {
+     return(
+      {ccy: json.ccy, buy: json.buy, sale: json.sale}
+      )
+   });
+   this.setState({rates: stateRates});
+ }
 
  async componentDidMount() { 
-   const api_url = await
-   fetch(`https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`)
-   const json = await api_url.json();
-   this.setState({ rates: json });
-
-  }
+   const url = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
+   const response = await fetch(`${url}`);
+   if (response.ok) {
+    const json = await response.json();
+   } else {
+     alert("Ошибка HTTP: " + response.status)
+   }
+ }
  
  
  render() {
+  const { rates } = this.state;
   return(
    <React.Fragment>
-     <Header></Header>
+     <Header rates={rates}></Header>
      
    </React.Fragment>
   );
