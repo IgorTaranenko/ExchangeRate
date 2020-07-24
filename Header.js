@@ -15,8 +15,8 @@ import { Container, Col, Row } from 'react-bootstrap'
 				<Row>
 				  <Col md={1}/>
 				  <Col md={10}>			  	
-								<h2>Курсы валют на сегодня:</h2>
-								<div className="center-block">{ratesShow}</div>
+						<h2>Курсы валют на сегодня:</h2>
+						<div className="center-block">{ratesShow}</div>
 				  </Col>
 				  <Col md={1}/>
 				</Row>
