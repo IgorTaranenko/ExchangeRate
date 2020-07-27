@@ -9,6 +9,9 @@
 .inline-block {
   display: inline-block;
 }
+.td-u {
+  text-decoration: underline;
+}
 .rates-header {
   width: 100%;
   height: 100%;
@@ -25,4 +28,75 @@
 }
 .rates-Exchange:hover {
   text-decoration: underline;
+}
+.rates-sum {
+  -ms-flex-item-align: center;
+      align-self: center;
+  padding: 2px;
+  border: 2px solid #3aa3fc;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+.rates-sum:focus {
+  outline: none;
+}
+.rates-radio {
+  position: relative;
+  font-size: 1.3rem;
+  margin: 0.25rem 0;
+  cursor: pointer;
+  padding-left: 1.4rem;
+}
+.rates-radio input {
+  display: none;
+}
+.rates-radio:before {
+  content: '';
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 0;
+  width: 1rem;
+  height: 1rem;
+  background-color: #3aa3fc;
+  border-radius: 50%;
+}
+.rates-radio:hover:before {
+  background-color: #7ac2ff;
+}
+.rates-mark {
+  position: absolute;
+  top: 12px;
+  left: 4.2px;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: white;
+  border-radius: 50%;
+}
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  height: 100%;
+}
+.wrapper-col {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }

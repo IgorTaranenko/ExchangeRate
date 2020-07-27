@@ -51,20 +51,25 @@ class Converter extends React.Component {
  	 	 	 	<Row>
  	 	 	 	   <Col md={2}/>
  	 	 	 		<Col md={4}>
-                  <label className="block">
-                     <input onClick={(e) => this.radioClick(e)} id={0} type="radio" checked={radioChange[0]}/>
-                     Доллары
-                  </label>
-                  <label className="block">
-                     <input onClick={(e) => this.radioClick(e)} id={1} type="radio" checked={radioChange[1]}/>
-                     Евро
-                  </label>
-                  <label className="block">
-                     <input onClick={(e) => this.radioClick(e)} id={2} type="radio" checked={radioChange[2]}/>
-                     Рубли
-                  </label>
+                  <div className="wrapper wrapper-col">
+                     <label className="rates-radio">
+                        {radioChange[0] ? <span className="rates-mark"></span> : ''}
+                        <input onClick={(e) => this.radioClick(e)} id={0} type="radio" checked={radioChange[0]}/>
+                        {radioChange[0] ? <span className="td-u">Доллары</span> : 'Доллары'}
+                     </label>
+                     <label className="rates-radio">
+                        {radioChange[1] ? <span className="rates-mark"></span> : ''}
+                        <input onClick={(e) => this.radioClick(e)} id={1} type="radio" checked={radioChange[1]}/>
+                        {radioChange[1] ? <span className="td-u">Евро</span> : 'Евро'}
+                     </label>
+                     <label className="rates-radio">
+                        {radioChange[2] ? <span className="rates-mark"></span> : ''}              
+                        <input onClick={(e) => this.radioClick(e)} id={2} type="radio" checked={radioChange[2]}/>
+                        {radioChange[2] ? <span className="td-u">Рубли</span> : 'Рубли'}
+                     </label>
+                  </div>
                </Col>
- 	 	 	 		<Col md={4}><input onChange={(e) => this.inputChange(e)} type="Number" value={this.state.value}/></Col>
+ 	 	 	 		<Col md={4}><div className="wrapper"><input className="rates-sum" onChange={(e) => this.inputChange(e)} type="Number" value={this.state.value}/></div></Col>
  	 	 	 		<Col md={2}/>
  	 	 	 	</Row>
  	 	 	 	<Row>
