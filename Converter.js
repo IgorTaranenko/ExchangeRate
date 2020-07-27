@@ -16,31 +16,44 @@ class Converter extends React.Component {
    }
 
  	inputChange = (event) => {
-      const { activeRate, rates } = this.state;
-      const value = event.target.value;
-      let convertValue = value;
-      let rate = rates[activeRate].sale;
-      let rateMethod = this.convertTo(rate);
-      convertValue = rateMethod(value);
-      convertValue = parseInt(convertValue * 100) / 100;
-      this.setState({value: value, convertValue: convertValue});
- 	}
+      const { activeRate, rates } = this.state; // стейты
+      const value = event.target.value; // sum
+      if (activeRate) {
+         let rate = rates[activeRate].buy;
+         let convertValue = this.convertMethod(rate, value);
+         this.setState({value: value, convertValue: convertValue});   
+      } else {
+         this.setState({value: null});         
+         alert("Выберете курс!");
+      }      
+   }
 
- 	convertTo = (rate) => {
- 	 	return function convert(sum) {
+   convertTo = (rate) => {
+      return function convert(sum) {
          return rate * sum;
- 	 	}
- 	}
-			
-   radioClick = (event, int) => {
-   	let index = event.target.id;
-   	let { radioChange } = this.state;
-   	let newR = radioChange.map((item) => {
-         return item = false
-   	});
-   	newR[index] = true;
-   	this.setState({radioChange: newR, activeRate: index});
+      }
+   }
 
+   convertMethod = (rate, value) => {
+      let rateMethod = this.convertTo(rate);
+      let convertValue = parseInt(rateMethod(value) * 100) / 100;
+      return convertValue;
+   }
+         
+   radioClick = (event) => {
+      let { rates, radioChange, activeRate, value, convertValue } = this.state;
+      let index = event.target.id;
+      if (activeRate) {
+         let rateMethod = this.convertTo(rates[index].buy);
+         let newConvertValue = (convertValue / rates[activeRate].buy);
+         newConvertValue = parseInt(rateMethod(value) * 100) / 100;
+         this.setState({convertValue: newConvertValue});  
+      }
+      let newR = radioChange.map((item) => {
+         return item = false
+      });
+      newR[index] = true;
+      this.setState({radioChange: newR, activeRate: index});
    }
 
    render() {
