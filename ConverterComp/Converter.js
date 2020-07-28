@@ -1,6 +1,7 @@
 import React from 'react';
-import './ExchangeRate.css'
+import '../ExchangeRate.css'
 import { Container, Col, Row } from 'react-bootstrap'
+import InputSum from './InputSum.js'
 
 class Converter extends React.Component {
 
@@ -15,9 +16,14 @@ class Converter extends React.Component {
  	 	}
    }
 
- 	inputChange = (event) => {
-      const { activeRate, rates } = this.state; // стейты
-      const value = event.target.value; // sum
+// Ввод суммы 
+
+ 	inputChange = (event) => { 
+      const { activeRate, rates } = this.state; 
+      const value = event.target.value; 
+      if(event.keyCode == 27) {
+            alert("Hello");
+         }
       if (activeRate) {
          let rate = rates[activeRate].buy;
          let convertValue = this.convertMethod(rate, value);
@@ -28,18 +34,24 @@ class Converter extends React.Component {
       }      
    }
 
+// Замыкание
+
    convertTo = (rate) => {
       return function convert(sum) {
          return rate * sum;
       }
    }
 
+// Конвертация валюты
+
    convertMethod = (rate, value) => {
       let rateMethod = this.convertTo(rate);
       let convertValue = parseInt(rateMethod(value) * 100) / 100;
       return convertValue;
    }
-         
+
+// Радио кнопки
+
    radioClick = (event) => {
       let { rates, radioChange, activeRate, value, convertValue } = this.state;
       let index = event.target.id;
@@ -54,6 +66,12 @@ class Converter extends React.Component {
       });
       newR[index] = true;
       this.setState({radioChange: newR, activeRate: index});
+   }
+
+// Кнопка удалить
+
+   deleteClick = () => {
+      this.setState({value: NaN, convertValue: NaN});
    }
 
    render() {
@@ -71,25 +89,22 @@ class Converter extends React.Component {
                      <label className="rates-radio">
                         {radioChange[0] ? <span className="rates-mark"></span> : ''}
                         <input onClick={(e) => this.radioClick(e)} id={0} type="radio" checked={radioChange[0]}/>
-                        {radioChange[0] ? <span className="td-u">Доллары</span> : 'Доллары'}
+                        {radioChange[0] ? <span className="td-u blue-color">Доллары</span> : 'Доллары'}
                      </label>
                      <label className="rates-radio">
                         {radioChange[1] ? <span className="rates-mark"></span> : ''}
                         <input onClick={(e) => this.radioClick(e)} id={1} type="radio" checked={radioChange[1]}/>
-                        {radioChange[1] ? <span className="td-u">Евро</span> : 'Евро'}
+                        {radioChange[1] ? <span className="td-u blue-color">Евро</span> : 'Евро'}
                      </label>
                      <label className="rates-radio">
                         {radioChange[2] ? <span className="rates-mark"></span> : ''}              
                         <input onClick={(e) => this.radioClick(e)} id={2} type="radio" checked={radioChange[2]}/>
-                        {radioChange[2] ? <span className="td-u">Рубли</span> : 'Рубли'}
+                        {radioChange[2] ? <span className="td-u blue-color">Рубли</span> : 'Рубли'}
                      </label>
                   </div>
                </Col>
  	 	 	 		<Col md={4}>
-                  <div className="wrapper">
-                     <input className="rates-sum" onChange={(e) => this.inputChange(e)} type="Number" value={this.state.value}/>
-                     <span onClick={() => {this.setState({value: NaN, convertValue: NaN})}} className="clear"></span>
-                  </div>
+                  <InputSum deleteClick={this.deleteClick} value={value} onChange={(e) => {this.inputChange(e)}}/>
                </Col>
  	 	 	 		<Col md={2}/>
  	 	 	 	</Row>

@@ -3,7 +3,7 @@
  import './ExchangeRate.css'
  import { Spinner } from 'react-bootstrap'
  import Header from './Header.js'
- import Converter from './Converter.js'
+ import Converter from './ConverterComp/Converter.js'
 
  
 
