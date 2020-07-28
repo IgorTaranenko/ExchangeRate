@@ -30,6 +30,7 @@
   text-decoration: underline;
 }
 .rates-sum {
+  width: 75%;
   -ms-flex-item-align: center;
       align-self: center;
   padding: 2px;
@@ -70,7 +71,7 @@
   left: 0;
   width: 1rem;
   height: 1rem;
-  background-color: #3aa3fc;
+  border: 2px solid #3aa3fc;
   border-radius: 50%;
 }
 .rates-radio:hover:before {
@@ -82,7 +83,7 @@
   left: 4.2px;
   width: 0.5rem;
   height: 0.5rem;
-  background-color: white;
+  background-color: blue;
   border-radius: 50%;
 }
 .wrapper {
@@ -99,4 +100,21 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+.clear {
+  display: inline-block;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-left: 0.3rem;
+  background: url(img/delete.png) center no-repeat;
+  background-size: cover;
+  cursor: pointer;
 }

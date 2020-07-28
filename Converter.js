@@ -23,7 +23,7 @@ class Converter extends React.Component {
          let convertValue = this.convertMethod(rate, value);
          this.setState({value: value, convertValue: convertValue});   
       } else {
-         this.setState({value: null});         
+         this.setState({value: NaN});         
          alert("Выберете курс!");
       }      
    }
@@ -61,6 +61,9 @@ class Converter extends React.Component {
       console.log(rates[0].sale);
       return(
          <Container>
+            <Row>
+               <Col md={12}><h2 className="mt-3 mb-3 center-block">Конвертировать валюту в UAH</h2></Col>
+            </Row>
  	 	 	 	<Row>
  	 	 	 	   <Col md={2}/>
  	 	 	 		<Col md={4}>
@@ -82,13 +85,18 @@ class Converter extends React.Component {
                      </label>
                   </div>
                </Col>
- 	 	 	 		<Col md={4}><div className="wrapper"><input className="rates-sum" onChange={(e) => this.inputChange(e)} type="Number" value={this.state.value}/></div></Col>
+ 	 	 	 		<Col md={4}>
+                  <div className="wrapper">
+                     <input className="rates-sum" onChange={(e) => this.inputChange(e)} type="Number" value={this.state.value}/>
+                     <span onClick={() => {this.setState({value: NaN, convertValue: NaN})}} className="clear"></span>
+                  </div>
+               </Col>
  	 	 	 		<Col md={2}/>
  	 	 	 	</Row>
  	 	 	 	<Row>
- 	 	 	 		<Col md={5} />
- 	 	 	 		<Col md={2}><h2>{convertValue}</h2></Col>
- 	 	 	 		<Col md={5} />
+ 	 	 	 		<Col md={3} />
+ 	 	 	 		<Col md={6}>{convertValue ? <h2 className="center-block">{convertValue} UAH</h2> : ''}</Col>
+ 	 	 	 		<Col md={3} />
  	 	 	 	</Row>
  	 	 	</Container>
        
