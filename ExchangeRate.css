@@ -86,20 +86,35 @@
 }
 .rates-mark {
   position: absolute;
-  top: 12px;
+  top: 11.5px;
   left: 4.2px;
   width: 0.5rem;
   height: 0.5rem;
   background-color: #587bff;
   border-radius: 50%;
 }
+.rates-button {
+  padding: 0.5rem;
+  margin: 1rem;
+  outline: none;
+  background-color: white;
+  border: 2px solid #3aa3fc;
+  font-size: 1.2rem;
+  border-radius: 5px;
+}
+.rates-button:focus {
+  outline: none;
+}
+.rates-button-selected {
+  background-color: #3aa3fc;
+  color: white;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
   height: 100%;
 }
 .wrapper-col {
@@ -107,6 +122,11 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+.wrapper-button {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .clear {
   display: inline-block;

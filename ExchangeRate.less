@@ -78,20 +78,39 @@
 	}
 	&-mark{
 		position: absolute;
-		top: 12px;
+		top: 11.5px;
 		left: 4.2px;
 		width: 0.5rem;
 		height: 0.5rem;
 		background-color: #587bff;
 		border-radius: 50%;
 	}
+	&-button {
+		padding: 0.5rem;
+		margin: 1rem;
+		outline: none;
+		background-color: white;
+		border: 2px solid #3aa3fc;
+		font-size: 1.2rem;
+		border-radius: 5px;
+	}
+	&-button:focus {
+		outline: none;
+	}
+	&-button-selected {
+		background-color: #3aa3fc;
+		color: white;
+		box-shadow: 0 0 15px rgba(0,0,0,0.3);
+	}
 }
 .wrapper {
 	display: flex;
-	align-items: flex-start;
 	height: 100%;
 	&-col {
 		flex-direction: column;
+	}
+	&-button {
+		justify-content: center;
 	}
 }
 .clear {

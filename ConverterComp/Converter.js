@@ -2,6 +2,8 @@ import React from 'react';
 import '../ExchangeRate.css'
 import { Container, Col, Row } from 'react-bootstrap'
 import InputSum from './InputSum.js'
+import SwitchButtons from './SwitchButtons.js'
+import Result from './Result.js'
 
 class Converter extends React.Component {
 
@@ -13,24 +15,29 @@ class Converter extends React.Component {
          convertValue: null,
          radioChange: [false, false, false],
          activeRate: null,
+         rateSwitch: null,
  	 	}
    }
 
 // Ввод суммы 
 
  	inputChange = (event) => { 
-      const { activeRate, rates } = this.state; 
+      const { activeRate, rates, rateSwitch } = this.state; 
       const value = event.target.value; 
-      if(event.keyCode == 27) {
-            alert("Hello");
-         }
-      if (activeRate) {
-         let rate = rates[activeRate].buy;
-         let convertValue = this.convertMethod(rate, value);
-         this.setState({value: value, convertValue: convertValue});   
+      if (activeRate && rateSwitch) {
+         if (rateSwitch == "to") {
+            let rate = rates[activeRate].buy;
+            let convertValue = this.convertMethod(rate, value);
+            this.setState({value: value, convertValue: convertValue});
+         } 
+         if (rateSwitch == "from") {
+            let rate = rates[activeRate].sale;
+            let convertValue = this.convertMethod(rate, value);
+            this.setState({value: value, convertValue: convertValue});
+         }           
       } else {
          this.setState({value: NaN});         
-         alert("Выберете курс!");
+         alert("Выберете курс и способ конвертации!");
       }      
    }
 
@@ -42,10 +49,23 @@ class Converter extends React.Component {
       }
    }
 
+   convertFrom = (rate) => {
+      return function convert(sum) {
+         return sum / rate;
+      }
+   }
+
 // Конвертация валюты
 
    convertMethod = (rate, value) => {
-      let rateMethod = this.convertTo(rate);
+      const { rateSwitch } = this.state;
+      let rateMethod;
+      if (rateSwitch == "to") {
+         rateMethod = this.convertTo(rate);
+      }
+      if (rateSwitch == "from") {
+         rateMethod = this.convertFrom(rate);   
+      }      
       let convertValue = parseInt(rateMethod(value) * 100) / 100;
       return convertValue;
    }
@@ -53,12 +73,11 @@ class Converter extends React.Component {
 // Радио кнопки
 
    radioClick = (event) => {
-      let { rates, radioChange, activeRate, value, convertValue } = this.state;
-      let index = event.target.id;
+      const { rates, radioChange, activeRate, value } = this.state;
+      const index = event.target.id;
+      let rate = rates[index].buy;
       if (activeRate) {
-         let rateMethod = this.convertTo(rates[index].buy);
-         let newConvertValue = (convertValue / rates[activeRate].buy);
-         newConvertValue = parseInt(rateMethod(value) * 100) / 100;
+         let newConvertValue = this.convertMethod(rate, value);
          this.setState({convertValue: newConvertValue});  
       }
       let newR = radioChange.map((item) => {
@@ -74,13 +93,33 @@ class Converter extends React.Component {
       this.setState({value: NaN, convertValue: NaN});
    }
 
+// Переключатель кнопок
+
+   switchClick = (event) => {
+      console.log(this.state.rateSwitch)
+      const buttonId = event.target.id;
+      this.setState({rateSwitch: buttonId});
+      console.log(this.state.rateSwitch)
+   }
+
+// Список названий валют
+
+   ccyList = () => {
+      const { rates } = this.state;
+      const result = rates.map(item => {
+         return item.ccy;
+      });
+      return result;
+   }
+
    render() {
-      const { rates, value, convertValue, radioChange } = this.state;    
-      console.log(rates[0].sale);
+      const { value, convertValue, radioChange, rateSwitch, activeRate } = this.state;
       return(
          <Container>
             <Row>
-               <Col md={12}><h2 className="mt-3 mb-3 center-block">Конвертировать валюту в UAH</h2></Col>
+               <Col md={12}>
+                  <SwitchButtons switchClick={this.switchClick} rateSwitch={rateSwitch}/>
+               </Col>
             </Row>
  	 	 	 	<Row>
  	 	 	 	   <Col md={2}/>
@@ -110,7 +149,9 @@ class Converter extends React.Component {
  	 	 	 	</Row>
  	 	 	 	<Row>
  	 	 	 		<Col md={3} />
- 	 	 	 		<Col md={6}>{convertValue ? <h2 className="center-block">{convertValue} UAH</h2> : ''}</Col>
+ 	 	 	 		<Col md={6}>
+                  <Result result={convertValue} rateSwitch={rateSwitch} activeRate={activeRate} ccyList={this.ccyList}/>
+               </Col>
  	 	 	 		<Col md={3} />
  	 	 	 	</Row>
  	 	 	</Container>
