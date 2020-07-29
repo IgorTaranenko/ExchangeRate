@@ -32,7 +32,7 @@ ratesToState = (json) => {
  }
 
  async componentDidMount() { 
-   const url = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
+   const url = "https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11";
    try {
      const response = await fetch(`${url}`);
      if (response.ok) {
