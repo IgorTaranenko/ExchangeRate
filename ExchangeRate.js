@@ -4,7 +4,7 @@
  import { Spinner } from 'react-bootstrap'
  import Header from './Header.js'
  import Converter from './ConverterComp/Converter.js'
-
+ 
  
 
 class ExchangeRate extends React.Component{

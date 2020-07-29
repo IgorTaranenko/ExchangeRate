@@ -131,14 +131,12 @@ class Converter extends React.Component {
       return(
          <Container>
             <Row>
-               <Col md={12}>
-                  <SwitchButtons switchMethod={this.switchMethod} rateSwitch={rateSwitch}/>
-               </Col>
+               <SwitchButtons switchMethod={this.switchMethod} rateSwitch={rateSwitch}/>
             </Row>
  	 	 	 	<Row>
- 	 	 	 	   <Col md={2}/>
- 	 	 	 		<Col md={4}>
-                  <div className="wrapper wrapper-col">
+ 	 	 	 	   <Col lg={2} sm={0}/>
+ 	 	 	 		<Col lg={4} md={6} sm={12}>
+                  <div className="wrapper wrapper-col sm-cent">
                      <label className="rates-radio">
                         {radioChange[0] ? <span className="rates-mark"></span> : ''}
                         <input onClick={(e) => this.radioClick(e)} id={0} type="radio" checked={radioChange[0]}/>
@@ -156,17 +154,17 @@ class Converter extends React.Component {
                      </label>
                   </div>
                </Col>
- 	 	 	 		<Col md={4}>
-                   <InputSum deleteClick={this.deleteClick} value={value} onChange={(e) => {this.inputChange(e)}}/> : 
+ 	 	 	 		<Col lg={4} md={6} sm={12}>
+                   <InputSum deleteClick={this.deleteClick} value={value} onChange={(e) => {this.inputChange(e)}}/>  
                </Col>
- 	 	 	 		<Col md={2}/>
+ 	 	 	 		<Col lg={2} sm={0}/>
  	 	 	 	</Row>
  	 	 	 	<Row>
- 	 	 	 		<Col md={3} />
- 	 	 	 		<Col md={6}>
+ 	 	 	 		<Col lg={3} />
+ 	 	 	 		<Col lg={6}>
                   <Result result={convertValue} rateSwitch={rateSwitch} activeRate={activeRate} ccyList={this.ccyList}/>
                </Col>
- 	 	 	 		<Col md={3} />
+ 	 	 	 		<Col lg={3} />
  	 	 	 	</Row>
  	 	 	</Container>
        

@@ -38,7 +38,7 @@ class InputSum extends React.Component {
 		const { value } = this.props;
 		const { inputClass } = this.state;
 		return(
-			<div className="wrapper">
+			<div className="wrapper wrapper-right sm-cent">
 				<input className={inputClass} onChange={this.props.onChange} type="Number" min="1" value={value}/>
 				<span onClick={this.animateInput} className="clear"></span>
 			</div>

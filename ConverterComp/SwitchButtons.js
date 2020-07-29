@@ -1,6 +1,7 @@
  
 import React from 'react';
 import '../ExchangeRate.css'
+import { Col } from 'react-bootstrap'
 
 class SwitchButtons extends React.Component {
 	constructor(props) {
@@ -28,10 +29,20 @@ class SwitchButtons extends React.Component {
 	render() {
 		const { rateSwitch, toButtonStyle, forButtonStyle } = this.state;
 		return(
-			<div className="wrapper wrapper-button">
-			   <button onClick={(event) => {this.switchClick(event)}} id={"to"} className={toButtonStyle}>Конвертировать валюту в UAH</button>
-			   <button onClick={(event) => {this.switchClick(event)}} id={"from"} className={forButtonStyle}>Конвертировать UAH в валюту</button>
-			</div>
+			<React.Fragment>
+				<Col lg={2}/>
+				<Col lg={4} md={6} sm={12}>
+					<div className="left">
+						<button onClick={(event) => {this.switchClick(event)}} id={"to"} className={toButtonStyle}>Конвертировать валюту в UAH</button>
+					</div>
+				</Col>
+				<Col lg={4} md={6} sm={12}>
+					<div className="right">
+						<button onClick={(event) => {this.switchClick(event)}} id={"from"} className={forButtonStyle}>Конвертировать UAH в валюту</button>
+					</div>
+				</Col>
+				<Col lg={2}/>
+			</React.Fragment>
 		)
 	}
 }
