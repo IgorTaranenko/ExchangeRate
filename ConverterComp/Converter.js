@@ -157,7 +157,7 @@ class Converter extends React.Component {
                   </div>
                </Col>
  	 	 	 		<Col md={4}>
-                  <InputSum deleteClick={this.deleteClick} value={value} onChange={(e) => {this.inputChange(e)}}/>
+                   <InputSum deleteClick={this.deleteClick} value={value} onChange={(e) => {this.inputChange(e)}}/> : 
                </Col>
  	 	 	 		<Col md={2}/>
  	 	 	 	</Row>

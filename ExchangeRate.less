@@ -34,9 +34,10 @@
 		text-decoration: underline;
 	}
 	&-sum {
-		width: 75%;
+		display: flex;
+		width: 60%;
 		align-self: center;
-		padding: 2px;
+		padding: 5px;
 		border: 2px solid #3aa3fc;
 		border-radius: 5px;
 		font-size: 1.2rem;
@@ -105,6 +106,7 @@
 }
 .wrapper {
 	display: flex;
+	justify-content: center;
 	height: 100%;
 	&-col {
 		flex-direction: column;
@@ -129,13 +131,13 @@
 // animations
 @keyframes delete {
 	0%{
-		width: 75%;
+		width: 60%;
 	}
 	50%{
 		width: 10%;
 	}
 	100%{
-		width: 75%;
+		width: 60%;
 	}
 	animation-timing-function: linear;
 }

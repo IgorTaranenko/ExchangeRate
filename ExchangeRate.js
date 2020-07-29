@@ -56,6 +56,7 @@ render() {
         <React.Fragment>
           <Header rates={rates} />
           <Converter rates={rates} />
+          <button onClick={() => window.location.assign('/')} className="mt-5 btn btn-primary center-block">К портфолио!</button>
         </React.Fragment>
         ) : <div className="center-block"><Spinner animation="border" /></div>}      
     </React.Fragment>
