@@ -73,7 +73,7 @@ class Converter extends React.Component {
       const { radioChange, activeRate, value, rateSwitch } = this.state;
       const index = event.target.id;
       let rate = this.switchCheck(index, rateSwitch);
-      if (activeRate) {
+      if (value) {
          let newConvertValue = this.convertMethod(rate, value);
          this.setState({convertValue: newConvertValue});  
       }
